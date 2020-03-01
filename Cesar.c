@@ -1,21 +1,20 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-
 #include <string.h>
 #include <stdlib.h> 
 #define MAXMESSAGESIZE 256
 
-char rusFont[33] = "абвгдеёжзиклмнопрстуфхцчшщъыьэюя\0";
+char rusFont[33] = "Р°Р±РІРіРґРµС‘Р¶Р·РёРєР»РјРЅРѕРїСЂСЃС‚СѓС„С…С†С‡С€С‰СЉС‹СЊСЌСЋСЏ\0";
 typedef char* string;
 string cesar(char inputChar[], int inputShift, char rusFont[])
 {
 	char buffer[2] = "0\0";
-	int size = strlen(inputChar); // длина сообщения
+	int size = strlen(inputChar); // РґР»РёРЅР° СЃРѕРѕР±С‰РµРЅРёСЏ
 
-	for (int i = 0; i < size; i++) //проход по введенному сообщению 
+	for (int i = 0; i < size; i++) //РїСЂРѕС…РѕРґ РїРѕ РІРІРµРґРµРЅРЅРѕРјСѓ СЃРѕРѕР±С‰РµРЅРёСЋ 
 	{
-		buffer[0] = inputChar[i]; //Заносим значение в буфер
-		inputChar[i] = rusFont[(strstr(rusFont, buffer) - rusFont + inputShift) % 32]; //разница указателей даст искомый i, прибавляем к нему сдвиг и считаем по модулю
+		buffer[0] = inputChar[i]; //Р—Р°РЅРѕСЃРёРј Р·РЅР°С‡РµРЅРёРµ РІ Р±СѓС„РµСЂ
+		inputChar[i] = rusFont[(strstr(rusFont, buffer) - rusFont + inputShift) % 32]; //СЂР°Р·РЅРёС†Р° СѓРєР°Р·Р°С‚РµР»РµР№ РґР°СЃС‚ РёСЃРєРѕРјС‹Р№ i, РїСЂРёР±Р°РІР»СЏРµРј Рє РЅРµРјСѓ СЃРґРІРёРі Рё СЃС‡РёС‚Р°РµРј РїРѕ РјРѕРґСѓР»СЋ
 	}
 	return inputChar;
 }
@@ -24,16 +23,16 @@ int main(void)
 {
 	system("chcp 1251");
 	system("cls");
-	int inputShift; //переменная сдвига (ключ)
+	int inputShift; //РїРµСЂРµРјРµРЅРЅР°СЏ СЃРґРІРёРіР° (РєР»СЋС‡)
 	int size;
-	char inputChar[MAXMESSAGESIZE]; //сообщение пользователя
-	printf("\nРеализация шифра Цезаря для русского языка.\n\nВведите ключ - ");
+	char inputChar[MAXMESSAGESIZE]; //СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+	printf("\nР РµР°Р»РёР·Р°С†РёСЏ С€РёС„СЂР° Р¦РµР·Р°СЂСЏ РґР»СЏ СЂСѓСЃСЃРєРѕРіРѕ СЏР·С‹РєР°.\n\nР’РІРµРґРёС‚Рµ РєР»СЋС‡ - ");
 	scanf("%d", &inputShift);
-	printf("\nВведите сообщение для шифрования: ");
+	printf("\nР’РІРµРґРёС‚Рµ СЃРѕРѕР±С‰РµРЅРёРµ РґР»СЏ С€РёС„СЂРѕРІР°РЅРёСЏ: ");
 	size = scanf("%s", inputChar); 
 	string outputChar = cesar(inputChar, inputShift, rusFont);
 	printf("\n");
-	printf("Зашифрованная строка: "); 
+	printf("Р—Р°С€РёС„СЂРѕРІР°РЅРЅР°СЏ СЃС‚СЂРѕРєР°: "); 
 	puts(outputChar);
 	printf("\n");
 	return 0;
